@@ -1,0 +1,78 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="description" content="__DESCRIPTION__"><title>__NAME__ — Motive</title><link rel="icon" href="data:,"><style>
+:root{color-scheme:light;--canvas:#f2f3f0;--ink:#343a36;--muted:#727a73;--dock:#fcfdfa;--border:#d7dcd4;--field:#eef0eb;--fill:#dce3d8;--hover:#e5eae1;--focus:#596e5a;--dock-height:62px;--bottom:28px;--ease-out:cubic-bezier(.23,1,.32,1);--shadow:0 12px 32px #2731210d,0 2px 6px #27312108,inset 0 1px 0 #ffffff80}
+:root[data-finish=light]{--ink:#232327;--muted:#777781;--dock:#fff;--border:#e0e0e4;--field:#f3f3f5;--fill:#e4e4e9;--hover:#ededf1;--focus:#60606e;--shadow:0 12px 32px #1414200c,0 2px 6px #14142008,inset 0 1px 0 #ffffff80}
+:root[data-finish=dark]{--ink:#e1e5ec;--muted:#a0a4ac;--dock:#131416;--border:#30333a;--field:#1e2024;--fill:#363a42;--hover:#2c2f35;--focus:#b2bac7;--shadow:0 12px 32px #0006,0 2px 6px #0004,inset 0 1px 0 #ffffff05}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;min-height:100%;overflow:hidden}
+body{background:var(--canvas);color:var(--ink);font:13px/20px ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif}
+.canvas{height:100vh;height:100dvh;display:grid;place-items:center;padding:24px 16px calc(var(--dock-height) + var(--bottom) + 34px);overflow:hidden}
+.canvas svg{display:block;width:min(82vw,78vh,680px);height:min(82vw,78vh,680px);max-width:100%;max-height:100%;overflow:visible}
+.dock{position:fixed;z-index:2;left:12px;bottom:calc(var(--bottom) + env(safe-area-inset-bottom));padding:8px;display:grid;grid-template-columns:44px 165px 78px 168px 1px 44px 44px;gap:7px;align-items:center;border:1px solid var(--border);border-radius:21px;background:var(--dock);box-shadow:var(--shadow);max-width:calc(100vw - 24px);user-select:none}
+button,input,select{font:inherit;color:inherit;-webkit-tap-highlight-color:transparent}
+button,select{cursor:pointer}
+button{background:transparent;border:0;border-radius:13px;padding:0;display:grid;place-items:center;width:44px;height:44px;transition:transform 140ms var(--ease-out)}
+button svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
+.play{background:var(--field)}
+.play-symbol,.pause-symbol{transform-box:fill-box;transform-origin:center;transition:transform 160ms var(--ease-out),opacity 120ms var(--ease-out)}
+.play[data-playing=true] .play-symbol,.play[data-playing=false] .pause-symbol{opacity:0;transform:scale(.85)}
+.play[data-playing=false] .play-symbol,.play[data-playing=true] .pause-symbol{opacity:1;transform:none}
+.field{position:relative;height:44px;min-width:0;border-radius:13px;background:var(--field)}
+.range-field{cursor:ew-resize;display:flex;align-items:center;justify-content:space-between;padding:0 14px;gap:10px;isolation:isolate;overflow:hidden}
+.range-fill{position:absolute;inset:0;background:var(--fill);transform:scaleX(.6);transform-origin:left;z-index:-1;pointer-events:none}
+.range-field span,.range-field output{pointer-events:none;font-size:13px;font-weight:500;line-height:20px}
+.range-field output{font-variant-numeric:tabular-nums;font-weight:500;min-width:3ch;text-align:right}
+.range-field input{position:absolute;inset:0;opacity:0;width:100%;height:100%;margin:0;cursor:ew-resize;touch-action:pan-y}
+.select-field{width:100%;display:flex;align-items:center;justify-content:space-between;padding:0 13px;gap:10px;font-size:13px;font-weight:500;text-align:left}
+.select-field .chevron{width:14px;height:14px;flex-shrink:0;color:var(--muted)}
+.select-field[data-open=true],.settings-toggle[data-open=true]{background:var(--fill)}
+.dock-divider{width:1px;height:22px;background:var(--border)}
+button:focus-visible,.field:has(:focus-visible),.check-row input:focus-visible,#position:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
+.field input:focus-visible{outline:none}
+:root[data-input=pointer] button:active{transform:scale(.97);background:var(--hover)}
+.floating-panel{position:fixed;inset:auto auto calc(var(--bottom) + var(--dock-height) + 12px) 16px;margin:0;width:288px;max-width:calc(100vw - 32px);max-height:calc(100dvh - var(--dock-height) - var(--bottom) - 32px);overflow:auto;padding:16px;background:var(--dock);color:var(--ink);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow);opacity:0;transform:translateY(6px) scale(.97);transform-origin:var(--origin-x,90%) bottom;transition:opacity 110ms var(--ease-out),transform 140ms var(--ease-out),display 140ms allow-discrete,overlay 140ms allow-discrete}
+.floating-panel:popover-open{opacity:1;transform:none;transition-duration:180ms,180ms,180ms,180ms}
+@starting-style{.floating-panel:popover-open{opacity:0;transform:translateY(6px) scale(.97)}}
+.floating-panel::backdrop{background:transparent}
+.settings-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;padding-left:2px}
+.settings-head h2{margin:0;font-size:13px;font-weight:600;letter-spacing:-.01em}
+.settings-head button{width:32px;height:32px;color:var(--muted);border-radius:10px}
+.settings-head svg{width:16px;height:16px}
+.check-row{display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:44px;padding:9px 2px;font-size:13px;cursor:pointer}
+.check-row input{width:16px;height:16px;accent-color:var(--ink);margin:0;cursor:pointer}
+.position-label{display:flex;justify-content:space-between;gap:15px;margin:10px 0 0;padding:15px 2px 0;border-top:1px solid var(--border);font-size:12px;color:var(--muted)}
+.position-label output{font-variant-numeric:tabular-nums}
+.picker{width:216px;padding:6px;border-radius:18px}
+.speed-picker{width:150px}
+.picker-option{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:40px;padding:0 12px;border-radius:11px;cursor:pointer;outline:none;font-weight:500;user-select:none}
+.picker-option svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;opacity:0}
+.picker-option[aria-selected=true] svg{opacity:1}
+.picker-option:focus-visible{background:var(--hover);outline:2px solid var(--focus);outline-offset:-2px}
+@media(hover:hover) and (pointer:fine){.picker-option:hover{background:var(--hover)}}
+#position{width:100%;height:32px;accent-color:var(--ink);cursor:pointer;display:block;margin:0}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+[hidden]{display:none!important}
+@media(hover:hover) and (pointer:fine){button:hover{background:var(--hover)}.select-field:hover{background:var(--hover)}}
+:root[data-input=keyboard] .dock button,:root[data-input=keyboard] .play-symbol,:root[data-input=keyboard] .pause-symbol,:root[data-input=keyboard] .floating-panel{transition:none}
+@media(prefers-reduced-motion:reduce){.dock button,.play-symbol,.pause-symbol,.floating-panel{transition:none!important}.floating-panel,.floating-panel:popover-open{transform:none}}
+@media(max-width:650px){:root{--bottom:18px}.dock{width:calc(100vw - 24px);grid-template-columns:44px minmax(0,1fr) 76px 44px;grid-template-rows:44px 44px;gap:7px}.play{grid-column:1;grid-row:1}.range-field{grid-column:2/4;grid-row:1}.restart{grid-column:4;grid-row:1}.finish-field{grid-column:1/3;grid-row:2}.speed-field{grid-column:3;grid-row:2}.settings-toggle{grid-column:4;grid-row:2}.dock-divider{display:none}.canvas{padding-top:12px;padding-bottom:calc(var(--dock-height) + var(--bottom) + 28px)}.canvas svg{width:min(96vw,66vh);height:min(96vw,66vh)}}
+@media(max-height:450px){:root{--bottom:12px}.canvas{padding-top:10px;padding-bottom:calc(var(--dock-height) + var(--bottom) + 12px)}.canvas svg{width:min(70vw,66vh);height:min(70vw,66vh)}}
+
+/* Construction separates the silhouette from its interior diagram. */
+.grid-guides > *{vector-effect:non-scaling-stroke;stroke-width:.75px;opacity:.75}
+.primitive-guides > *{vector-effect:non-scaling-stroke;stroke-width:.75px;stroke-linecap:round;stroke-linejoin:round}
+</style></head><body>
+<main class="canvas"><h1 class="sr-only">__NAME__</h1><svg id="art" viewBox="-65 -65 130 130" role="img" aria-label="__DESCRIPTION__"></svg></main>
+<div class="dock" id="dock" role="group" aria-label="Animation controls">
+<button class="play" id="play" data-playing="true" aria-label="Pause animation" title="Pause animation"><svg viewBox="0 0 24 24" aria-hidden="true"><g class="pause-symbol"><path d="M9 6v12M15 6v12" stroke-width="2"/></g><path class="play-symbol" d="m9 5 10 7-10 7Z" fill="currentColor" stroke="none"/></svg></button>
+<label class="field range-field" id="intensity-field" title="Intensity · drag to adjust"><span class="range-fill" id="intensity-fill" aria-hidden="true"></span><span>Intensity</span><output id="intensity-value">60</output><input id="intensity" aria-label="Animation intensity" type="range" min="0" max="100" value="60"></label>
+<button class="field select-field speed-field" id="speed-toggle" popovertarget="speed-picker" aria-haspopup="listbox" aria-expanded="false" aria-controls="speed-picker" aria-labelledby="speed-title speed-label" title="Playback speed"><span class="sr-only" id="speed-title">Playback speed</span><span id="speed-label"></span><svg class="chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="m5 6 3-3 3 3m-6 4 3 3 3-3"/></svg></button><select hidden tabindex="-1" id="speed" aria-label="Playback speed"><option value=".5">½×</option><option value="1" selected>1×</option><option value="1.5">1½×</option><option value="2">2×</option></select>
+<button class="field select-field finish-field" id="finish-toggle" popovertarget="finish-picker" aria-haspopup="listbox" aria-expanded="false" aria-controls="finish-picker" aria-labelledby="finish-title finish-label" title="Animation finish"><span class="sr-only" id="finish-title">Animation finish</span><span id="finish-label"></span><svg class="chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="m5 6 3-3 3 3m-6 4 3 3 3-3"/></svg></button><select hidden tabindex="-1" id="finish" aria-label="Animation finish"><option value="drawing">Construction</option><option value="flat">Graphite</option><option value="light">Light</option><option value="dark">Dark</option></select>
+<span class="dock-divider" aria-hidden="true"></span>
+<button class="restart" id="restart" aria-label="Restart animation" title="Restart animation"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10a8 8 0 1 1 1 7M4 4v6h6"/></svg></button>
+<button class="settings-toggle" id="settings-toggle" popovertarget="settings" aria-expanded="false" aria-controls="settings" aria-label="Animation settings" title="Animation settings"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h7m5 0h4M4 17h3m5 0h8"/><circle cx="13.5" cy="7" r="2.5"/><circle cx="9.5" cy="17" r="2.5"/></svg></button>
+</div>
+<div class="floating-panel picker speed-picker" id="speed-picker" popover role="listbox" aria-label="Playback speed"></div>
+<div class="floating-panel picker finish-picker" id="finish-picker" popover role="listbox" aria-label="Animation finish"></div>
+<section class="floating-panel settings" id="settings" popover role="dialog" aria-label="Animation settings"><div class="settings-head"><h2>Settings</h2><button popovertarget="settings" popovertargetaction="hide" aria-label="Close settings" title="Close settings"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div><label class="check-row">Construction guides<input id="guides" type="checkbox" checked></label><label class="check-row" id="emphasis-row" hidden>High contrast<input id="emphasis" type="checkbox" checked></label><label class="position-label" for="position"><span>Position</span><output id="time">4.3 / 8 s</output></label><input id="position" aria-label="Animation position" type="range" min="0" max="800" step="1" value="430"></section>
+<p id="status" class="sr-only" role="status" aria-live="polite"></p>
+<script>__SCRIPT__</script></body></html>

@@ -1,0 +1,8 @@
+{
+  "id": "resilience",
+  "name": "Resilience",
+  "description": "A shifting load bends a shared span. Its supports redistribute toward the pressure, steadying the span before the load moves to the other side.",
+  "duration": 8,
+  "pose": 1.65,
+  "finish": "dark"
+}

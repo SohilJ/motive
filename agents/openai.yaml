@@ -1,0 +1,4 @@
+interface:
+  display_name: "Cohere · Motive"
+  short_description: "Turn abstract ideas into expressive gooey loops"
+  default_prompt: "Use $motive to help interpret an abstract idea and turn it into a polished standalone looping animation."
