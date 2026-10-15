@@ -31,6 +31,14 @@ Use the reusable player and builder for consistent standalone output. Read [impl
 
 Deliver **one self-contained HTML per concept**, with only the animation and a compact toolbar centered at the bottom. Include play/pause, intensity, speed, finish, restart, and relevant secondary settings. Put comparisons, research, and explanatory prose in separate artifacts. The four supported finishes are Construction, Graphite, Light, and Dark. Every new standalone export must open in Construction with guides enabled. Set metadata `finish` to `drawing` (or omit it); explicit finish URLs can still open a requested preview. Preserve an actively selected preview finish during revisions unless the user requests a different default. Construction uses a single crisp silhouette with lighter guides contained inside it; never stack raw primitive outlines over its outer edge.
 
+## Consistent quality at any batch size
+
+A request for multiple animations changes the count, not the finish level. Use the same approved player, contour renderer, Construction default, centered composition, and controls for every item. Read [quality-gates.md](references/quality-gates.md) for every build, including batches.
+
+A gallery of requested animations must contain actual continuous motion. Two still poses, crossfades, wireframes, and concept diagrams are useful planning artifacts but do not satisfy an animation request. Preserve the accepted visual language when moving from one example to a large batch; do not substitute a simpler renderer to finish the count.
+
+Check every item individually against the gates, then compare the entire set with the accepted Synthesis, Growth, and Emergence examples. Track each item's evidence and repairs in a batch review. Do not declare the batch complete while any requested item is missing, substituted, or unreviewed. If work remains, state exactly which items and checks are outstanding and continue within the authorized task.
+
 ## Check the result
 
 Inspect the decisive poses and the transitions between them for a stable center and balanced motion, including maximum intensity. Then inspect actual browser rendering, including moving joins and small screens. Sampling a declared stroke width is not evidence of consistent appearance. The Hairline outer and inner lines must be independent, closed, fully opaque 1.5-pixel strokes: no local fading, gradient highlight, or inner line made by covering a thick stroke.
