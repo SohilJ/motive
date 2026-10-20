@@ -27,7 +27,7 @@ Read [visual-language.md](references/visual-language.md) for the established fin
 
 Compose the decisive still frames first, then connect them with motion. A perfect loop needs a semantic reason to repeat. For an irreversible story, resolve its cycle explicitly rather than silently rewinding the outcome. Eight seconds and the supplied motifs are examples, not requirements.
 
-Use the reusable player and builder for consistent standalone output. Read [implementation.md](references/implementation.md) when implementing a figure. Write a new figure module; the examples are quality references, not a fixed menu. Extend the renderer when the chosen mechanism needs unsupported geometry instead of distorting the idea to fit the starter.
+Use the reusable player and builder for consistent standalone output. Read [implementation.md](references/implementation.md) when implementing a figure. Write a new figure module; the examples are quality benchmarks, not a fixed menu. Extend the renderer when the chosen mechanism needs unsupported geometry instead of distorting the idea to fit the starter.
 
 Deliver **one self-contained HTML per concept**, with only the animation and a compact toolbar centered at the bottom. Include play/pause, intensity, speed, finish, restart, and relevant secondary settings. Put comparisons, research, and explanatory prose in separate artifacts. The four supported finishes are Construction, Graphite, Light, and Dark. Every new standalone export must open in Construction with guides enabled. Set metadata `finish` to `drawing` (or omit it); explicit finish URLs can still open a requested preview. Preserve an actively selected preview finish during revisions unless the user requests a different default. Construction uses a single crisp silhouette with lighter guides contained inside it; never stack raw primitive outlines over its outer edge.
 
@@ -41,7 +41,7 @@ Check every item individually against the gates, then compare the entire set wit
 
 ## Check the result
 
-Inspect the decisive poses and the transitions between them for a stable center and balanced motion, including maximum intensity. Then inspect actual browser rendering, including moving joins and small screens. Sampling a declared stroke width is not evidence of consistent appearance. The Hairline outer and inner lines must be independent, closed, fully opaque 1.5-pixel strokes: no local fading, gradient highlight, or inner line made by covering a thick stroke.
+Inspect the decisive poses and the transitions between them for a stable center and balanced motion, including maximum intensity. Then inspect actual browser rendering, including moving joins and small screens. Sampling a declared stroke width is not evidence of consistent appearance. In Light and Dark, the outer and inner lines must be independent, closed, fully opaque 1.5-pixel strokes: no local fading, gradient highlight, or inner line made by covering a thick stroke.
 
 Check the loop on both sides of its seam, multiple poses and intensities, finish switching, controls, responsive layout, and reduced-motion behavior. Verify supported external actors as well as the main merged material. A portable file must contain no required network resources and should open directly from disk. See the specific checks in [implementation.md](references/implementation.md).
 
@@ -49,4 +49,4 @@ Review meaning separately from polish. Explain the intended transformation brief
 
 ## Included examples
 
-`assets/examples/` contains the accepted Synthesis, Growth, and Emergence modules and metadata. All four finishes were also accepted. `assets/rejected/resilience.*` preserves a technically checked trial rejected by the user for its off-center, asymmetric choreography; it is a counterexample, not a starter or quality reference. The lesson is recorded in [discovery.md](references/discovery.md). Reference observations and reconstruction choices are distinguished in [visual-language.md](references/visual-language.md).
+`assets/examples/` contains the accepted Synthesis, Growth, and Emergence modules and metadata. All four finishes were also accepted. `assets/rejected/resilience.*` preserves a technically checked trial rejected by the user for its off-center, asymmetric choreography; it is a counterexample, not a starter or quality benchmark. The lesson is recorded in [discovery.md](references/discovery.md). The finish and motion rules are in [visual-language.md](references/visual-language.md).
