@@ -34,6 +34,6 @@ One self-contained HTML file per idea. Open it in any browser, even offline. A c
 
 ## Why I made it
 
-[The gooey effect](https://css-tricks.com/gooey-effect/) is one of the web’s most recognizable visual tricks. I wanted to use it to make original visuals from a prompt, with the idea shaping the motion. [Andres Jasso’s studies](https://x.com/_andresjasso/status/2097782847302139926) and [Lucas Marques’ Hairline process](https://hairline.lucasmarkes.com/inspo) helped me work out how.
+[The gooey effect](https://css-tricks.com/gooey-effect/) is one of the web’s most recognizable visual tricks. I wanted to use it to make original visuals from a prompt, with the idea shaping the motion.
 
 Built by [Sohil Jain](https://sohil.design).

@@ -46,24 +46,24 @@ function both(p,attrs){set(p.shape,attrs);set(p.guide,attrs);}
 /*FIGURE_CODE*/
 const model=createFigure(scene,actors);
 const drawMotion=t=>model.draw(t,intensity);
-function isHairline(){return finish==='light'||finish==='dark';}
+function isOutlineFinish(){return finish==='light'||finish==='dark';}
 function resizeContour(){vector.resize();}
 function showGuides(){
  const on=guideChoices[finish];grid.style.display=on?'':'none';raw.style.display=on&&finish==='drawing'?'':'none';$('#guides').checked=on;
 }
-function showEmphasis(){vector.setContrast(emphasis);$('#emphasis-row').hidden=!isHairline();$('#emphasis').checked=emphasis;}
+function showEmphasis(){vector.setContrast(emphasis);$('#emphasis-row').hidden=!isOutlineFinish();$('#emphasis').checked=emphasis;}
 function applyFinish(){
- const p=finishes[finish],hairline=isHairline();
+ const p=finishes[finish],outline=isOutlineFinish();
  document.documentElement.dataset.finish=finish;
  document.documentElement.style.setProperty('--canvas',p.ground);
  document.documentElement.style.colorScheme=finish==='dark'?'dark':'light';
  set(base.fill,{'flood-color':p.fill});set(base.edge,{'flood-color':p.edge,'flood-opacity':finish==='flat'?0:1});
  set(grid,{stroke:p.grid});
- for(const shape of actors.children)set(shape,{fill:hairline?p.ground:p.fill,stroke:hairline?p.hi:finish==='drawing'?p.edge:'none','stroke-width':hairline?1.5:1,'vector-effect':'non-scaling-stroke'});
+ for(const shape of actors.children)set(shape,{fill:outline?p.ground:p.fill,stroke:outline?p.hi:finish==='drawing'?p.edge:'none','stroke-width':outline?1.5:1,'vector-effect':'non-scaling-stroke'});
  model.theme?.(p,finish);
  filteredView.style.display=finish==='flat'?'':'none';
- construction.group.style.display=finish==='drawing'?'':'none';vector.group.style.display=hairline?'':'none';
- if(hairline)vector.theme(p);
+ construction.group.style.display=finish==='drawing'?'':'none';vector.group.style.display=outline?'':'none';
+ if(outline)vector.theme(p);
  $('#finish').value=finish;syncPicker('finish');showGuides();showEmphasis();resizeContour();render();
 }
 function render(){
@@ -71,7 +71,7 @@ function render(){
  drawMotion(t);
  const contourKey=FIGURE.id+':'+t+':'+intensity;
  if(finish==='drawing')construction.draw(ink,contourKey);
- if(isHairline())vector.draw(ink,contourKey);
+ if(isOutlineFinish())vector.draw(ink,contourKey);
  $('#position').value=Math.round(seconds*100);$('#time').textContent=seconds.toFixed(1)+' / '+DURATION+' s';
 }
 function playUI(){

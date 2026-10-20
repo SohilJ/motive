@@ -40,7 +40,7 @@ Before technical validation, inspect composition: identify the fixed center and 
 1. Open the output directly as a local file and inspect the visible result. Check browser errors and required network requests.
 2. Inspect meaningful poses through contact, joining, splitting, and the hold. Include 0%, 60%, and 100% intensity. Check that external actors remain visible and do not imply unintended merging.
 3. Compare near-end and near-start geometry as well as exact endpoints. Test continuity of position and, when visible, speed. Look at actual playback; matching endpoint strings alone is insufficient.
-4. Switch all four finishes at a paused pose. Primitive geometry and time should remain unchanged. In Hairline, inspect closed outer and inner paths, opacity, moving corners, and holes. Sampling the inner path against the filled body can catch inset excursions.
+4. Switch all four finishes at a paused pose. Primitive geometry and time should remain unchanged. In Light and Dark, inspect closed outer and inner paths, opacity, moving corners, and holes. Sampling the inner path against the filled body can catch inset excursions.
 5. Exercise play/pause, intensity, speed, restart, matching dropdowns, settings toggles, and scrub. Scrubbing should pause. The dock must fit and remain clear of the art at desktop and narrow/short sizes.
 6. Under reduced motion, a normal URL starts paused at a meaningful pose. Explicit Play works. Restore temporary browser emulation afterward.
 

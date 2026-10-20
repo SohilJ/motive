@@ -6,11 +6,11 @@ Use a small set of regular primitives and a legible organization. Spatial relati
 
 Use goo to connect, separate, redistribute, or preserve a relationship under deformation. Avoid decorative wobble, continuous random drifting, gradients suggesting soft 3D volume, or unrelated particle traffic. These are local style decisions for this skill, not universal animation rules.
 
-The reference canvas is a 100-unit construction square inside a 130-unit SVG view. Keep the main figure approximately within ±45 units, with room for its maximum-intensity poses. The grid is a secondary inspection aid. Do not fill the canvas with labels or implementation explanations.
+The working canvas is a 100-unit construction square inside a 130-unit SVG view. Keep the main figure approximately within ±45 units, with room for its maximum-intensity poses. The grid is a secondary inspection aid. Do not fill the canvas with labels or implementation explanations.
 
 ## Centered composition and symmetry
 
-**Keep the composition centered; transform within it.** This is an explicit user requirement for this visual language, clarified after the Resilience trial. It is not a universal motion-design law or a recovered numerical setting from the reference videos.
+**Keep the composition centered; transform within it.** This is an explicit user requirement for this visual language, clarified after the Resilience trial. It is a project-specific choice, not a universal motion-design law.
 
 - Establish one fixed visual center in the animation area, with the toolbar below it. Keep the camera and stage still; do not chase moving geometry by recentering the view each frame.
 - Organize the figure around a mirror axis or rotational symmetry. Pair expansion, compression, branching, separation, and return around that anchor. Bars, rectangles, poles, branches, and negative spaces are as valid as circles.
@@ -30,7 +30,7 @@ Before building, identify the center and symmetry in the key poses. During revie
 | Light | `#ffffff` | `#ffffff` | Outer `#232327`, inner `#a4a4ac` |
 | Dark | `#08090a` | `#08090a` | Outer `#d0d6e0`, inner `#5b5d64` |
 
-Hairline strokes are 1.5 screen pixels, fully opaque and non-scaling. The quieter contrast option changes the entire outer boundary to the inner gray. Both lines are complete paths. Do not add gradients, radial emphasis, clipped stroke bands, or background overpainting. Guides sit behind the opaque body. Normal edge antialiasing remains; do not claim every raster pixel has identical color.
+Light and Dark contours use 1.5-screen-pixel strokes that are fully opaque and non-scaling. The quieter contrast option changes the entire outer boundary to the inner gray. Both lines are complete paths. Do not add gradients, radial emphasis, clipped stroke bands, or background overpainting. Guides sit behind the opaque body. Normal edge antialiasing remains; do not claim every raster pixel has identical color.
 
 Construction is the default landing finish, with guides enabled. It uses one filled union path with an opaque, non-scaling 1.5-pixel outline. Primitive guides are 0.75-pixel non-scaling strokes at 48% group opacity, clipped to the inset contour so they cannot redraw or protrude through the silhouette. Grid strokes are also 0.75 pixels with a quieter weight. Crossings inside the construction diagram remain intentional; doubled outer edges are not.
 
@@ -42,11 +42,6 @@ The expressive hierarchy is approach → contact → consequential change → a 
 
 The supplied `ease` uses cubic-bezier(.77,0,.175,1) for deliberate on-screen transformations. Constant circulation can use linear phase. Eight-second example cycles and specific geometry sizes are calibrated examples, not fixed rules for future concepts. Intensity should change physical expression without erasing the message. Reduced motion starts on a composed still frame with an explicit Play control.
 
-## Source process and attribution
+## Technique
 
-- [Hairline making-of](https://hairline.lucasmarkes.com/inspo): dissect a specific technique, build adjustable studies, critique them, turn accepted corrections into rules, then package.
-- [Hairline figures](https://hairline.lucasmarkes.com/figures) and [source snapshot](https://github.com/lucasmarkes/hairline/tree/a2217852fed6d1a4f20bc7d43d4fad1a3de117b8/skills/hairline-create): palette and line hierarchy. The source used 0.9-pixel strokes; this skill's reviewed adaptation uses solid 1.5-pixel paths. The source asks for concept selection; the extended adaptive interview here is an explicit user requirement.
-- [Lucas Bebber's gooey effect](https://css-tricks.com/gooey-effect/): shared blur and alpha contrast join nearby shapes.
-- Andres Jasso's [anatomy](https://x.com/_andresjasso/status/2097456341766037602) and [construction breakdown](https://x.com/_andresjasso/status/2097782847302139926): simple primitives, controlled contact and separation, compact geometry. Downloaded footage was inspected during development. Exact easing and filter parameters were not recovered; the settings here are our reconstruction choices.
-
-The package contains original reconstruction code and examples, not downloaded videos or the Hairline skill implementation.
+[The original gooey-effect article](https://css-tricks.com/gooey-effect/) explains how a shared blur and alpha contrast can join nearby shapes. Motive uses that technique with its own geometry, timing, contours, and controls to express each idea.
