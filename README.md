@@ -1,6 +1,10 @@
 # Motive
 
-Give ideas a moving form. Motive is an agent skill that turns abstract concepts into centered, looping geometric animations.
+**Ideas, set in motion.** Motive is a skill for coding agents. Describe an idea; it asks a few questions about what the motion should express, then makes a looping geometric animation as a standalone HTML file.
+
+[![A looping Construction drawing changes from four joined lobes into a rounded frame with a central opening](assets/readme/motion.gif)](https://motive-black.vercel.app/figures/emergence/)
+
+[Watch Emergence](https://motive-black.vercel.app/figures/emergence/)
 
 ## Install
 
@@ -8,22 +12,28 @@ Give ideas a moving form. Motive is an agent skill that turns abstract concepts 
 npx skills add SohilJ/motive
 ```
 
-Choose your coding agent and installation scope when prompted. The installer includes the skill instructions, rendering tools, player, and reference examples. You need Node.js/npm for installation and Python 3 for the included HTML builder.
-
-Start a new agent session, then describe an idea:
+Choose your coding agent when prompted. In Codex, start a new session and try:
 
 ```text
 $motive Show how independent teams find a shared rhythm.
 ```
 
-Motive asks meaning-focused questions, explores interpretations, and builds a self-contained HTML animation with playback, intensity, speed, and finish controls. When you want the agent to decide, say so.
+You need Node.js/npm to install the skill and Python 3 to build the animation.
 
-Construction is the default finish; Graphite, Light, and Dark are also included.
+## A file you can keep
 
-The skill is maintained in this repository. The website and figure collection are developed separately.
+One self-contained HTML file per idea. Open it in any browser, even offline. A compact toolbar lets you play or pause, adjust intensity and speed, restart, and switch among Construction, Graphite, Light, and Dark finishes. Construction opens by default.
 
-## References
+[Open a standalone animation](https://motive-black.vercel.app/animations/emergence.html)
 
-The visual research draws on [Hairline](https://hairline.lucasmarkes.com/inspo), motion work by [Andres Jasso](https://x.com/_andresjasso), and [Lucas Bebber’s gooey effect](https://css-tricks.com/gooey-effect/). No reference videos or third-party artwork are included.
+## Explore the figures
+
+[![The Motive collection shows Synthesis, Growth, and Emergence as three geometric motion studies](assets/readme/figures.png)](https://motive-black.vercel.app/figures/)
+
+[Browse all figures](https://motive-black.vercel.app/figures/) · [Read the guide](https://motive-black.vercel.app/guide/) · [See how Motive was made](https://motive-black.vercel.app/notes/)
+
+## Why I made it
+
+[The gooey effect](https://css-tricks.com/gooey-effect/) is one of the web’s most recognizable visual tricks. I wanted to use it to make original visuals from a prompt, with the idea shaping the motion. [Andres Jasso’s studies](https://x.com/_andresjasso/status/2097782847302139926) and [Lucas Marques’ Hairline process](https://hairline.lucasmarkes.com/inspo) helped me work out how.
 
 Built by [Sohil Jain](https://sohil.design).
